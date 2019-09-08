@@ -1,0 +1,14 @@
+[Unit]
+Description=Stepper client
+After=network.target
+
+[Service]
+User=pi
+ExecStart=/bin/bash /usr/local/bin/servohost.sh
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

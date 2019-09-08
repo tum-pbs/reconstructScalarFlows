@@ -1,0 +1,22 @@
+How to install:
+
+SERVO
+- Build and install servoblaster according to the instructions. (Needs to be built ON THE PI)
+- Copy servohost.sh to /usr/local/bin/
+- Copy servo.service to /etc/systemd/system/
+- Enable the service with "sudo systemctl enable servo.service"
+
+STEPPER
+- Run build.sh in the 'c' folder to build the application and the lib.
+  THIS MUST BE BUILT ON THE PI!
+- Copy
+    motorclient.py
+    stepper.sh
+    c/stepper
+    c/stepper.so
+  to /usr/local/sbin/stepper/
+
+- Copy stepper.service to /etc/systemd/system/
+- Enable the service with "sudo systemctl enable stepper.service"
+
+NOTE: Currently the host-ip is hardcoded in the stepper.sh script.
