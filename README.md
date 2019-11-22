@@ -1,9 +1,14 @@
 # reconstructScalarFlows
 
-This is the code accompanying our data set ScalarFlow https://ge.in.tum.de/publications/2019-scalarflow-eckert/ by Marie-Lena Eckert http://marielenaeckert.com/. With this code, we capture real-world scalar flow phenomena: we calibrate cameras, control and record smoke plumes, post-process captured videos, reconstruct 3D density and 3D velocity from the 2D captured images, and post-process the reconstructed quantities. The reconstruction code is embedded in the mantaflow framework http://mantaflow.com/.
+This is the code accompanying the ScalarFlow data set https://ge.in.tum.de/publications/2019-scalarflow-eckert/.
+This code contains sources capture real-world scalar flow phenomena,
+i.e. calibrate cameras, control and record smoke plumes, post-process captured videos, 
+reconstruct 3D density and 3D velocity from the 2D captured images, and post-process the reconstructed quantities. 
+The reconstruction code is embedded in the mantaflow framework http://mantaflow.com/.
 
+Below you can find instructions for compiling and running the code.
 First, install required software for mantaflow. Detailed instructions on how to compile and run mantaflow can be found at:
-	http://www.mantaflow.com/install.html       and http://www.mantaflow.com/quickstart.html.
+http://www.mantaflow.com/install.html and http://www.mantaflow.com/quickstart.html.
 Then, clone the repository 'git clone https://bitbucket.org/marylen/reconstructscalarflows.git',
 go to repository,
 create build folder 'mkdir build',
@@ -12,9 +17,11 @@ build project 'cmake .. -DOPENMP=ON ,-DNUMPY='ON'',
 and make project 'make -j4'.
 If any errors occur, check the installation instructions for mantaflow.
 
-Next, download the test data from ScalarFlow https://syncandshare.lrz.de/dl/fi7eGqrHjj378NZMqFDRPUWr.
+Next, download a test data set from ScalarFlow, e.g., a single
+tar file. You can request the download link here: https://forms.gle/ooPFuiMwYYE8TC1X6
 
-During executing the python scripts, you might receive error messages for missing python packages, such as matplotlib, scipy, or opencv-python -- if so, please install them.
+The python scripts require several packages such as: numpy, matplotlib, scipy, opencv-python, picamera.
+Please install them where required.
 
 The detailed instructions of how to use the scripts are given in the scripts themselves. 
 1. Use scenes/simpleplume.py to create a synthetic smoke plume and render synthetic images based on real-world camera calibration with renderVol.py.
