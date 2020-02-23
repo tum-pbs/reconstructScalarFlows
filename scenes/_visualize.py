@@ -66,7 +66,7 @@ def setupV(gs):
 		axGlobalV[c].tick_params(axis='y', colors='#dddddd')
 		axGlobalV[c].yaxis.label.set_color('#dddddd')
 		axGlobalV[c].xaxis.label.set_color('#dddddd')
-		axGlobalV[c].set_axis_bgcolor('black')
+		axGlobalV[c].set_facecolor('black')
 		
 def setupD(gs):
 	global didSetupD
@@ -156,7 +156,7 @@ def getVelCmps(image, c2):
 	return U, V
 	
 def draw2DDensityNpy(filenameIn, scale, synthReal, negativeValues=False, dark=True, useColorMap=True):
-	useMap = 'viridis' if synthReal else plt.cm.gnuplot2
+	useMap = plt.cm.viridis if synthReal else plt.cm.gnuplot2
 	if not useColorMap: scale = 1
 	colorMapToUse = useMap if useColorMap else 'gray'
 	if dark: plt.style.use('dark_background')
@@ -174,12 +174,12 @@ def draw2DDensityNpy(filenameIn, scale, synthReal, negativeValues=False, dark=Tr
 
 		plots.append(axGlobalI[c].pcolormesh(XYIGlobal[c][0], XYIGlobal[c][1],  image[:,:], cmap = colorMapToUse, vmin = vmin, vmax = scale))
 	
-	fI.savefig(filenameIn[:-3]+'jpg')
+	fI.savefig(filenameIn[:-3]+'png')
 	for p in plots: p.remove()
 
 def draw3DDensityGridNpy(filenameIn, scale, synthReal, negativeValues=False):
 	plt.style.use('dark_background')
-	useMap = 'viridis' if synthReal else plt.cm.gnuplot2
+	useMap = plt.cm.viridis if synthReal else plt.cm.gnuplot2
 	
 	content = np.load(filenameIn)['data']
 
@@ -195,7 +195,7 @@ def draw3DDensityGridNpy(filenameIn, scale, synthReal, negativeValues=False):
 		
 		plots.append(axGlobalD[c2].pcolormesh(XYDGlobal[c][0], XYDGlobal[c][1], image[:,:,0], cmap = useMap, vmin = vmin, vmax = scale))
 
-	fD.savefig(filenameIn[:-3]+'jpg')
+	fD.savefig(filenameIn[:-3]+'png')
 	for p in plots: p.remove()
 
 def draw3DVelGridNpy(filenameIn, scale, synthReal):
@@ -215,7 +215,7 @@ def draw3DVelGridNpy(filenameIn, scale, synthReal):
 		U, V = getVelCmps(image, c2)
 		plots.append(axGlobalV[c2].quiver(XYVGlobal[c][0], XYVGlobal[c][1], U, V, np.arctan2(np.abs(V),np.abs(U)), cmap=useMap, headwidth=0, headlength=0, headaxislength=0, angles='xy', scale_units='xy', scale=scale, width=0.004))
 
-	fV.savefig(filenameIn[:-3]+'jpg')
+	fV.savefig(filenameIn[:-3]+'png')
 	for p in plots: p.remove()
 	
 	
